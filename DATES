@@ -2,4 +2,4 @@
 select Now();
 
 select age(HireDate, BirthDate)::text AS hire_age
-from 
+from from "alanparadise/nw"."customers"; 
