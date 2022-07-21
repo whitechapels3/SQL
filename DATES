@@ -1,0 +1,5 @@
+--What time is it
+select Now();
+
+select age(HireDate, BirthDate)::text AS hire_age
+from 
