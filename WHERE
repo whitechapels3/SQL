@@ -1,0 +1,7 @@
+select productid, productname, quantityperunit
+	from "alanparadise/nw"."products"
+    WHERE quantityperunit like '%jars%';
+    
+select productname, unitprice, unitsinstock,  (unitsinstock * unitprice) as "Total Value"
+	from "alanparadise/nw"."products"
+    WHERE (unitsinstock * unitprice) > 1000;
