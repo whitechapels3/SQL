@@ -1,0 +1,5 @@
+select count(*)
+from "alanparadise/nw"."customers"; 
+
+select count(distinct country)
+from "alanparadise/nw"."customers"; 
