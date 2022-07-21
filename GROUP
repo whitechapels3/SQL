@@ -1,2 +1,39 @@
-select COUNT(*) as 'staff size'
-from 
+select COUNT(*) as "staff size"
+from "alanparadise/nw"."employees"; 
+
+select COUNT(DISTINCT country) as "countries"
+from "alanparadise/nw"."customers"; 
+
+select avg(unitprice) as "AVG"
+from "alanparadise/nw"."products"; 
+
+--change the decimal
+select to_char(avg(unitprice), '99,999.99') as "AVG"
+from "alanparadise/nw"."products"; 
+
+select OrderID, SUM(UnitPrice) as "Total Price"
+from "alanparadise/nw"."orderdetails"
+where OrderID in (10248, 10249)
+group by OrderID;
+
+
+select country, count(customerid) as "Total"
+    from "alanparadise/nw"."customers"
+group by country
+    having count(customerid) > 5
+order by 2 desc;
+
+-- List the total (unitprice * quantity) as “Total Value”  by orderid for the top 5 orders.  (That is, the five orders with the highest Total Value.)  
+select orderid, SUM(unitprice * quantity) AS "Total Value"
+    from "alanparadise/nw"."orderdetails"
+	group by orderid
+    order by 2 desc limit 5 ;
+    
+    
+--How many products does Northwinds have in inventory?
+select count(productid) 
+	    from "alanparadise/nw"."products"
+      where unitsinstock > 0;
+
+
+    
