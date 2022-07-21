@@ -1,0 +1,38 @@
+select lastname, firstname, count(orderid) as "order total"
+from "alanparadise/nw"."employees", "alanparadise/nw"."orders"
+where "alanparadise/nw"."employees"."employeeid" = "alanparadise/nw"."orders"."employeeid"
+group by lastname, firstname
+order by 3 desc;
+
+--use aliase
+select lastname, firstname, count(orderid) as "order total"
+from "alanparadise/nw"."employees" O, "alanparadise/nw"."orders" E
+where O.employeeid = E.employeeid
+group by lastname, firstname
+order by 3 desc;
+
+--JOIN ON
+select lastname, firstname, count(orderid) as "order total"
+from "alanparadise/nw"."employees" O JOIN "alanparadise/nw"."orders" E
+  on O.employeeid = E.employeeid
+group by lastname, firstname
+order by 3 desc;
+
+--Create a Suppliers List showing Supplier CompanyName, and names of all the products sold by each supplier located in Japan.  
+SELECT companyname, productname
+        FROM "alanparadise/nw"."suppliers" E 
+           JOIN "alanparadise/nw"."products" O
+             ON E.supplierID = O.supplierID
+        WHERE E.country = 'Japan';
+
+
+-- List each order and its Total Value (unitprice * quantity) for all orders shipping into France in descending Total Value order.  
+SELECT O.orderID, sum(unitprice * quantity) as "Total Value" 
+            FROM "alanparadise/nw"."orders" O 
+		 JOIN "alanparadise/nw"."orderdetails" D 
+                 ON O.orderid = D.orderid
+            WHERE shipcountry = 'France'
+       GROUP BY O.orderid
+	ORDER BY 2 DESC;
+        
+
