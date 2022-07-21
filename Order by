@@ -1,0 +1,13 @@
+select distinct country
+from "alanparadise/nw"."customers" 
+order by country;
+
+select productname, unitprice
+from "alanparadise/nw"."products" 
+--instead of using col name, we can use col num as well
+order by 2 desc;
+
+select productname, unitprice
+from "alanparadise/nw"."products" 
+--show top 5 line
+order by 2 desc limit 5;
