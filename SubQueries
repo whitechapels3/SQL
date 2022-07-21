@@ -1,0 +1,35 @@
+select productID, productname, unitprice 
+	  from "alanparadise/nw"."products"
+    where Unitprice = (
+      select Max(unitprice)
+        from "alanparadise/nw"."products")
+        
+        
+select customerID, orderID 
+	  from "alanparadise/nw"."orders"
+    where orderID in (
+      select orderID
+        from "alanparadise/nw"."orderdetails"
+        where quantity > 100)
+        
+select orderid
+from (select orderid, sum(quantity)
+      from "alanparadise/nw"."orderdetails"
+      group by orderid
+      having sum(quantity) < 100) AS Detailcount;
+
+--Aliase for orders as o table so that SQL knows o.employeeid is from o table not from e table
+select o.employeeid, orderid, shipcity, customerid
+from "alanparadise/nw"."orders" o
+where employeeid in
+(select employeeid from "alanparadise/nw"."employees" e
+where e.city = o.shipcity);
+
+
+
+--List the productid, productname, unitprice of the lowest priced product Northwinds sells.   
+select productid, productname, unitprice
+from "alanparadise/nw"."products"
+where unitprice = (
+  select min(unitprice)
+  from "alanparadise/nw"."products");
