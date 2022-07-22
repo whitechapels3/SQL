@@ -6,3 +6,11 @@ JOIN "alanparadise/nw"."orderdetails" D ON
   O.orderid = D.orderid
 group by lastname, firstname
 order by 3 desc limit 5;
+
+--above is equal to below
+select Lastname, firstname, sum(unitprice * quantity) AS "Total Price"
+from "alanparadise/nw"."employees" E, "alanparadise/nw"."orders" O, "alanparadise/nw"."orderdetails" D
+WHERE   E.employees = O.employees
+  AND O.orderid = D.orderid
+group by lastname, firstname
+order by 3 desc limit 5;
