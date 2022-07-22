@@ -1,0 +1,6 @@
+select Lastname, firstname, sum(unitprice * quantity) AS "Total Price"
+from ""
+JOIN ""
+JOIN ""
+group by lastname, firstname
+order by 3 desc limit 5;
