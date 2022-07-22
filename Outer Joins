@@ -1,0 +1,29 @@
+--Left Outer Join
+select Lastname, firstname, count(orderid) AS "Order Total"
+from "alanparadise/nw"."employees" E LEFT OUTER JOIN
+"alanparadise/nw"."orders" O ON
+  E.employeeid = O.employeeid
+group by lastname, firstname
+order by 3 desc;
+
+--find any orders in the orders table whose customerid is NOT in the customer table
+select distinct o.customerid
+from "alanparadise/nw"."orders" O LEFT OUTER JOIN
+  "alanparadise/nw"."customers" C on
+  C.customerid = O.customerid
+where C.customerid is NULL
+
+--Are there any Northwinds employees that have no orders?
+select Lastname, firstname, count(orderid) AS "Order Total"
+from "alanparadise/nw"."employees" E LEFT OUTER JOIN
+"alanparadise/nw"."orders" O ON
+  E.employeeid = O.employeeid
+GROUP BY E.employeeid, lastname, firstname
+	ORDER BY E.employeeid;
+  
+-- Are there any Shippers that have shipped no Northwinds orders?     
+SELECT S.shipperid, companyname, count(orderid)
+	FROM "alanparadise/nw"."shippers" S  LEFT OUTER JOIN
+	    "alanparadise/nw"."orders" O  ON
+		S.shipperid = O.shipvia 
+	GROUP BY S.shipperid, companyname;
