@@ -1,0 +1,31 @@
+bit.io doesnt support Constraints
+
+Table Level:
+Primary Key
+Foreign Key
+
+Column Level:
+Not Null
+Check
+Default
+Unique
+Primary Key
+
+--Example
+CREATE TABLE "alanparadise/nw"."items"
+(
+itemID INT NOT NULL PRIMARY KEY,
+itemcode VARCHAR(5) UNIQUE,
+itemname VARCHAR(40) NOT NULL DEFAULT '',
+quantity INT NOT NULL DEFAULT 0,
+price REAL NOT NULL DEFAULT 0
+);
+
+CREATE TABLE "alanparadise/nw"."items"
+(
+itemID INT NOT NULL PRIMARY KEY,
+itemcode VARCHAR(5) UNIQUE,
+itemname VARCHAR(40) NOT NULL DEFAULT '',
+quantity INT NOT NULL DEFAULT 0,
+price DECIMAL(9,2) CHECK price < 1000
+);
