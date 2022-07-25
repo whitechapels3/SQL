@@ -1,0 +1,25 @@
+CREATE TABLE <Table name>
+  (<column name> <DATATYPE(L)>,
+  <column name> <DATATYPE(L)> NOT NULL)
+  
+  
+CREATE TABLE <Table name>
+(
+column name DATATYPE(L),
+column name DATATYPE(L) NOT NULL
+)
+
+CREATE TABLE "bit.io_account/demo_repo"."items" 
+( 
+    itemID     INT         NOT NULL ,
+    itemcode   VARCHAR(5)  NULL,
+    itemname   VARCHAR(40) NOT NULL DEFAULT ' ',
+    quantity   INT         NOT NULL DEFAULT 0,
+    price      REAL	    NOT NULL DEFAULT 0
+  );
+  
+INSERT INTO "bit.io_account/demo_repo"."items"
+	(SELECT productid, 
+	        concat(supplierid, categoryid, discontinued), 
+		  productname, unitsinstock, unitprice 
+   from "alanparadise/nw"."products");
